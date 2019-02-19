@@ -84,18 +84,15 @@
             <main>
                 <div class="content" id="mobile-panel">
                     {% block content %}
-                        <div class="posts">
-                            {% for page in paginator.pages %}
-                                <article class="post">
-                                    {{ post_macros::title(page=page) }}
-                                    <div class="post__summary">
-                                        {{ page.summary | safe }}
-                                    </div>
-                                    <div class="read-more">
-                                        <a href="{{ page.permalink }}">Read more...</a>
-                                    </div>
-                                </article>
-                            {% endfor %}
+                        <div class="taxonomy">
+                          {% for page in paginator.pages %}
+                              <div class="taxonomy__item">
+                                  <span class="taxonomy__item__time">{{ page.date | date(format="%F") }}</span>
+                                  <span class="taxonomy__item__title">
+                                      <a href="{{ page.permalink }}">{{ page.title }}</a>
+                                  </span>
+                              </div>
+                          {% endfor %}
                         </div>
                         <nav class="pagination">
                             {% if paginator.previous %}
